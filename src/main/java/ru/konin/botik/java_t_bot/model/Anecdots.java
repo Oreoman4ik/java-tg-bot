@@ -2,13 +2,16 @@ package ru.konin.botik.java_t_bot.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity(name = "anecdots")
 @Table(name = "anecdots")
 public class Anecdots {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anecdots_seq_gen")
+    @SequenceGenerator(name = "anecdots_seq_gen", sequenceName = "anecdots_id_seq", allocationSize = 1)
     private Long id;
 
     @Column
@@ -16,6 +19,11 @@ public class Anecdots {
 
     @Column
     private String content;
+
+    public Anecdots(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
     // Геттеры
     public Long getId() {

@@ -12,7 +12,7 @@ public class AnecdotsExceptionsHandler {
     @ExceptionHandler(AnecdotsNotFoundExceptions.class)
     public ResponseEntity<ExceptionRespone> handleAnecdotsNotFound (AnecdotsNotFoundExceptions exception) {
 
-        System.out.println("Joke not found with ID: " + exception.getId());
+        System.out.println("Anecdot not found with ID: " + exception.getId());
         return ResponseEntity.notFound().build();
     }
 }
